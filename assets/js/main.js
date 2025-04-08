@@ -142,6 +142,7 @@
       }
     });
   }
+  
 
   window.addEventListener("load", initSwiper);
 

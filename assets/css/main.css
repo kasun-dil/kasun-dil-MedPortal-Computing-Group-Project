@@ -23,7 +23,7 @@
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #1c8a53; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #16633c; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-hover-color: #166363; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -219,7 +219,7 @@ h6 {
 
 .header .topbar {
   background-color: var(--accent-color);
-  height: 40px;
+  height: 35px;
   padding: 0;
   font-size: 14px;
   transition: all 0.5s;
@@ -236,13 +236,6 @@ h6 {
   color: var(--contrast-color);
 }
 
-@media (max-width: 575px) {
-
-  .header .topbar .contact-info i a,
-  .header .topbar .contact-info i span {
-    font-size: 13px;
-  }
-}
 
 .header .topbar .contact-info i a {
   line-height: 0;
@@ -266,7 +259,7 @@ h6 {
 }
 
 .header .branding {
-  min-height: 60px;
+  min-height: 50px;
   padding: 10px 0;
 }
 
@@ -324,8 +317,24 @@ h6 {
 
 
 @media (max-width: 1200px) {
+
+  .header .topbar {
+    font-size: 13px;
+  }
   .header .logo {
     order: 1;
+  }
+
+  .header .logo img {
+    max-height: 34px;
+    margin-right: 8px;
+  }
+  
+  .header .logo h1 {
+    font-size: 27px;
+    margin: 0;
+    font-weight: 700;
+    color: var(--heading-color);
   }
 
   .header .cta-btn {
@@ -380,15 +389,28 @@ h6 {
 @media (max-width: 768px) {
   #header-carousel .carousel-item {
       position: relative;
-      min-height: 450px;
+      min-height: 150px;
   }
   
   #header-carousel .carousel-item img {
       position: absolute;
       width: 100%;
-      height: 100%;
+      height: 85%;
       object-fit: cover;
   }
+  .carousel-control-prev,
+.carousel-control-next {
+  width:20%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color:  #1c8a53;
+  border: 5px solid  #1c8a53;
+  border-radius: 3.5rem;
+}
 }
 
 
@@ -527,6 +549,10 @@ h6 {
     left: -100%;
     visibility: visible;
   }
+
+  .mobile-only {
+    display:none;
+}
 }
 
 /* Mobile Navigation */
@@ -552,7 +578,7 @@ h6 {
     inset: 60px 20px 20px 20px;
     padding: 10px 0;
     margin: 0;
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: var(--nav-mobile-background-color);
     border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
     box-shadow: none;
@@ -564,7 +590,7 @@ h6 {
   .navmenu a,
   .navmenu a:focus {
     color: var(--nav-dropdown-color);
-    padding: 10px 20px;
+    padding: 10px 40px;
     font-family: var(--nav-font);
     font-size: 17px;
     font-weight: 500;
@@ -597,9 +623,9 @@ h6 {
   }
 
   .navmenu a:hover,
-  .navmenu .active,
   .navmenu .active:focus {
     color: var(--nav-dropdown-hover-color);
+    transform: scale(1.1);
   }
 
   .navmenu .active i,
@@ -653,6 +679,37 @@ h6 {
   .mobile-nav-active .navmenu>ul {
     display: block;
   }
+  .mobile-only {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.mobile-only a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%; /* Make buttons stretch to fit width */
+    max-width: 200px; /* Set a maximum width */
+    padding: 12px 20px;
+    font-size: 16px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.mobile-only a i {
+    font-size: 20px;
+}
+
+
+    
+
+
 }
 
 /*--------------------------------------------------------------
@@ -774,6 +831,129 @@ h6 {
   font-size: 13px;
 }
 
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 750px;
+  border-radius: 10px;
+  position: relative;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#agreeBtn {
+  margin-top: 15px;
+  padding: 5px 15px;
+  max-width: 150px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  display: none;
+  cursor: pointer;
+  
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+}
+
+h2, h4 {
+  margin-top: 20px;
+}
+
+
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  z-index: 10000;
+  padding: 20px 15px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  animation: slideUp 0.6s ease-in-out;
+}
+
+.cookie-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.cookie-wrapper p {
+  font-size: 16px;
+  margin: 0;
+  flex: 1 1 70%;
+}
+
+.cookie-wrapper a {
+  color: #1abc9c;
+  text-decoration: underline;
+}
+
+.cookie-wrapper button {
+  background-color: #27ae60;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  flex: 1 1 25%;
+  max-width: 180px;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@media (max-width: 768px) {
+  .cookie-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cookie-wrapper button {
+    margin-top: 15px;
+  }
+}
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -807,6 +987,44 @@ h6 {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.myBtn1 {
+  position: fixed;
+  bottom: 65px;
+  right: 15px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color:rgb(4, 129, 138);
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.myBtn1:hover {
+  background-color: rgb(4, 100, 107);
+}
+
+.myBtn2{
+  position: fixed;
+  bottom: 122px;
+  right: 15px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color:rgb(4, 129, 138);
+  color: white;
+  cursor: pointer;
+  padding: 9px;
+  border-radius: 4px;
+}
+
+.myBtn2:hover {
+  background-color:rgb(4, 100, 107);
 }
 
 /*--------------------------------------------------------------
@@ -1056,6 +1274,7 @@ section,
   z-index: 1;
 }
 
+
 .hero .container {
   z-index: 3;
 }
@@ -1136,6 +1355,39 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 30%);
 }
 
+
+@media (max-width: 1200px) {
+
+  .hero .content .why-box {
+    color: var(--contrast-color);
+    background: var(--accent-color);
+    padding: 20px;
+    border-radius: 7px;
+    margin-top: -30px;
+  }
+  
+  .hero .welcome h2 {
+    margin-top: -50px;
+    font-size: 37px;
+    font-weight: 700;
+  }
+  
+  .hero .welcome p {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .hero .content .why-box h3 {
+    color: var(--contrast-color);
+    font-weight: 700;
+    font-size: 29px;
+  }
+  
+  .hero .content .why-box p {
+    text-align: left;
+    font-size: 14.4px;
+  }
+}
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
@@ -1178,58 +1430,26 @@ section,
 .about .pulsating-play-btn {
   position: absolute;
   left: calc(50% - 47px);
-  top: calc(50% - 47px);
+  top: calc(28% - 47px);
 }
 
-/*--------------------------------------------------------------
-# Stats Section
---------------------------------------------------------------*/
+@media (max-width: 1200px) {
 
-.stats{
-  background-image: url('assets/img/2.jpg');
-}
+  .about .pulsating-play-btn {
+    position: absolute;
+    left: calc(46% - 10px);
+    top: calc(17% - 10px);
+    width: 50px;
+    height: 50px;
+    
+  }
+  .about .abp{
+   font-size: 15px;
+  }  
 
-.stats i {
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1);
-  width: 54px;
-  height: 54px;
-  font-size: 24px;
-  border-radius: 50px;
-  border: 2px solid var(--background-color);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-}
-
-.stats .stats-item {
-  background-color: var(--surface-color);
-  margin-top: -27px;
-  padding: 30px 30px 25px 30px;
-  width: 100%;
-  position: relative;
-  text-align: center;
-  box-shadow: 0px 2px 35px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  z-index: 0;
-}
-
-.stats .stats-item span {
-  font-size: 32px;
-  display: block;
-  margin: 10px 0;
-  font-weight: 700;
-  color: var(--heading-color);
-}
-
-.stats .stats-item p {
-  padding: 0;
-  margin: 0;
-  font-family: var(--heading-font);
-  font-size: 16px;
+  .about .content p {
+    font-size: 15px;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1239,7 +1459,7 @@ section,
   background-color: var(--surface-color);
   text-align: center;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
-  padding: 80px 20px;
+  padding: 40px 20px;
   transition: all ease-in-out 0.3s;
   height: 100%;
 }
@@ -1311,6 +1531,10 @@ section,
   color: var(--contrast-color);
 }
 
+@media (max-width: 1200px) {
+  
+}
+
 
 /*--------------------------------------------------------------
 # cat Section
@@ -1369,135 +1593,180 @@ section,
   }
 
   .departments .nav-link.active {
-    color: var(--accent-color);
+    color: white;
     background: var(--accent-color);
   }
 }
 
 /*--------------------------------------------------------------
-# Doctors Section
+# counsellors Section
 --------------------------------------------------------------*/
-.doctors .team-member {
-  background-color: var(--surface-color);
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  position: relative;
-  border-radius: 5px;
-  transition: 0.5s;
-  padding: 30px;
-  height: 100%;
+
+
+.title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-@media (max-width: 468px) {
-  .doctors .team-member {
-    flex-direction: column;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-}
-
-.doctors .team-member .pic {
-  overflow: hidden;
-  width: 150px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.doctors .team-member .pic img {
-  transition: ease-in-out 0.3s;
-}
-
-.doctors .team-member:hover {
-  transform: translateY(-10px);
-}
-
-.doctors .team-member .member-info {
-  padding-left: 30px;
-}
-
-@media (max-width: 468px) {
-  .doctors .team-member .member-info {
-    padding: 30px 0 0 0;
-    text-align: center;
-  }
-}
-
-.doctors .team-member h4 {
-  font-weight: 700;
-  margin-bottom: 5px;
-  font-size: 20px;
-}
-
-.doctors .team-member span {
-  display: block;
-  font-size: 15px;
-  padding-bottom: 10px;
-  position: relative;
-  font-weight: 500;
-}
-
-.doctors .team-member span::after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 50px;
-  height: 1px;
-  background: color-mix(in srgb, var(--default-color), transparent 85%);
-  bottom: 0;
-  left: 0;
-}
-
-@media (max-width: 468px) {
-  .doctors .team-member span::after {
-    left: calc(50% - 25px);
-  }
-}
-
-.doctors .team-member p {
-  margin: 10px 0 0 0;
-  font-size: 14px;
-}
-
-.doctors .team-member .social {
-  margin-top: 12px;
+/* Profile Card Container */
+.profile-container {
   display: flex;
-  align-items: center;
-  justify-content: start;
-  width: 100%;
-}
-
-@media (max-width: 468px) {
-  .doctors .team-member .social {
-    justify-content: center;
-  }
-}
-
-.doctors .team-member .social a {
-  background: color-mix(in srgb, var(--default-color), transparent 94%);
-  transition: ease-in-out 0.3s;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 50px;
-  width: 36px;
-  height: 36px;
+  gap: 25px;
+  flex-wrap: wrap;
 }
 
-.doctors .team-member .social a i {
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+/* counsellors Profile Cards */
+.profile-card {
+  background: whitesmoke;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #1c8a53d8;
+  padding: 15px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.profile-card:hover{
+  background: rgb(208, 253, 216);
+  transform:scale(1.04);
+}
+
+.profile-card img {
+  width: 200px;
+  height:200px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.profile-card .info {
+  text-align: center;
+}
+
+.profile-card h3 {
+  margin: 10px 0;
+  font-size: 20px;
+  color: #1c8a53;
+}
+
+.profile-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+.view-btn {
+  background: #1c8a53;
+  color: white;
+  border: none;
+  padding: 8px;
+  width: 130px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.view-btn:hover {
+  background: #13663c;
+}
+
+/* Large Doctor Details Card */
+.large-card {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  background:#c5ffd9;
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 77vh;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Large Card Doctor Image */
+.large-card img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid #1c8a53;
+  object-fit: cover;
+}
+
+.large-card .details {
+  text-align: center;
+}
+
+.large-card h3 {
+  margin: 10px 0;
+  font-size: 24px;
+  color:#1c8a53;
+}
+
+.large-card p {
   font-size: 16px;
-  margin: 0 2px;
+  color: #555;
+  margin: 5px 0;
 }
 
-.doctors .team-member .social a:hover {
-  background: var(--accent-color);
+/* Close Button */
+.close-btn {
+  background: #ccffde;
+  color:  red;
+  border: none;
+  padding: 10px;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
 }
 
-.doctors .team-member .social a:hover i {
-  color: var(--contrast-color);
+.close-btn:hover {
+ color: darkred;
 }
 
-.doctors .team-member .social a+a {
-  margin-left: 8px;
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .profile-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .profile-card img {
+    width: 230px;
+    height:230px;
+   
+  }
+
+  .large-card {
+      width: 90%;
+      height: 85vh;
+  }
+
+  .large-card img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .large-card p {
+    font-size: 15px;
+  }
+  .large-card h3{
+    font-size: 20px;
+  }  
+  
 }
 
 /*--------------------------------------------------------------
@@ -1519,7 +1788,7 @@ section,
 
 .faq .faq-container .faq-item h3 {
   font-weight: 500;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 24px;
   margin: 0 30px 0 0;
   transition: 0.3s;
@@ -1554,7 +1823,7 @@ section,
   position: absolute;
   top: 20px;
   right: 20px;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 0;
   transition: 0.3s;
   cursor: pointer;
@@ -1587,12 +1856,22 @@ section,
   color: var(--accent-color);
 }
 
+@media (max-width: 768px){
+  
+  
+}
+
 /*--------------------------------------------------------------
 # Testimonials Section
 --------------------------------------------------------------*/
 .testimonials .info h3 {
   font-weight: 700;
   font-size: 32px;
+  
+}
+
+.testimonials .info p {  
+  text-align:justify ;
 }
 
 .testimonials .swiper {
@@ -1630,6 +1909,7 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 50%);
   font-size: 14px;
   margin: 0;
+
 }
 
 .testimonials .testimonial-item .stars {
@@ -1699,24 +1979,18 @@ section,
   .testimonials .testimonial-item {
     margin: 15px;
   }
+
+  .testimonials .info h3 {
+    text-align: center;
+ 
+    
+  }
+  .testimonials .info p {  
+    text-align:justify ;
+    font-size: 15px;
+  }
 }
 
-/*--------------------------------------------------------------
-# Gallery Section
---------------------------------------------------------------*/
-.gallery .gallery-item {
-  overflow: hidden;
-  border-right: 3px solid var(--background-color);
-  border-bottom: 3px solid var(--background-color);
-}
-
-.gallery .gallery-item img {
-  transition: all ease-in-out 0.4s;
-}
-
-.gallery .gallery-item:hover img {
-  transform: scale(1.1);
-}
 
 /*--------------------------------------------------------------
 # Contact Section
